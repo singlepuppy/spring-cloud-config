@@ -1,0 +1,22 @@
+server:
+  port: 7780
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      profile: dev
+#     uri: http://localhost:7778/                  #原始的配置中心uri,与下面两条冲突用这个不用下面的。#
+      discovery.enabled: true                   #从注册中心的服务中读取配置文件，可以作为负载均衡#
+      discovery.serviceId: config-server        #配置中心的servieId，即服务名：config-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7777/eureka/  #注册中心地址
+
+
+
+

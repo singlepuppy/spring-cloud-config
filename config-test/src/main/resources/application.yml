@@ -1,0 +1,11 @@
+server:
+  port: 7788
+
+spring:
+  application:
+    name: config-test
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7777/eureka/
