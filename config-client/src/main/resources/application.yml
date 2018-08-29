@@ -1,16 +1,31 @@
+#配置中心client 配置 (application)
+
 spring:
+  cloud:  #从配置中心拉取哪个文件的配置
+    config:
+      label: master
+      name: config-client    #application名称，即读取的文件名前缀
+      profile: dev           #环境 dev test prod
+      #     uri: http://localhost:7778/                  #原始的配置中心uri,与下面两条冲突用这个不用下面的。#
+      discovery:
+        enabled: true                   #从注册中心的服务中读取配置文件，可以作为负载均衡#
+        serviceId: config-server        #配置中心服务端的serviceId（即eureka服务名）
+    bus:      #Spring cloud 消息总线配置
+      enabled: true
+      trace:
+        enabled: true
+      bus
+
   rabbitmq:
     host: localhost
     port: 5672
     username: admin
     password: admin
-  cloud:
-    bus:
-      enabled: true
-      trace:
-        enabled: true
+
 management:
   endpoints:
     web:
       exposure:
         include: bus-refresh
+      cors:
+        allowed-origins:

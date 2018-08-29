@@ -1,0 +1,13 @@
+#配置中心Server端配置(bootstrap)
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka/

@@ -1,0 +1,24 @@
+#配置中心Server端配置(application)
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://10.101.130.56/WGJ/SpringcloudConfig.git
+          username: WGJ
+          password: wangguangjian5.9
+          searchPaths: /*
+    label: master
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
