@@ -18,7 +18,11 @@ spring:
     password: admin
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: bus-refresh
+  security:
+    enabled: false #是否开启actuator安全认证
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh

@@ -1,17 +1,27 @@
-#配置中心client 配置 (bootstrap)
+##配置中心client 配置 (bootstrap)
+#server:
+#  port: 9999
+#
+#eureka:  #向哪个eureka服务端注册的信息配置
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:7777/eureka/  #注册中心地址
 
-server:
-  port: 9999
+#配置中心client 配置 (application)
 
 spring:
   application: #eureka 客户端配置
     name: config-client
 
-eureka:  #向哪个eureka服务端注册的信息配置
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:7777/eureka/  #注册中心地址
-
+  cloud:  #从配置中心拉取哪个文件的配置
+    config:
+      label: master
+#      name: config-client    #application名称，此处代表读取的文件名前缀
+      profile: dev           #环境 dev test prod，此处代表读取的文件名后缀
+      uri: http://localhost:8888
+#      discovery:
+#        enabled: true                   #从注册中心的服务中读取配置文件，可以作为负载均衡#
+#        serviceId: config-server        #配置中心服务端的serviceId（即eureka服务名）
 
 
 

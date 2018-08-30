@@ -1,0 +1,24 @@
+server:
+  port: 7788
+
+spring:
+  application:
+    name: config-test
+#配置中心client 配置 (application)
+  cloud:
+    config:
+      label: master
+      name: config-test    #application名称，此处代表读取的文件名前缀
+      profile: dev           #环境 dev test prod，此处代表读取的文件名后缀
+      #name-profile   如：config-client-dev.yml/properties
+      #     uri: http://localhost:7778/                  #固定的配置中心服务端,与下面discovery的两条配置功能一样，用于寻找配置中心（集群配置中心可用discovery，非集群可用uri）.#
+      discovery:
+        enabled: true                   #从注册中心的服务中读取配置文件，可以作为负载均衡#
+        serviceId: config-server        #配置中心服务端的serviceId（即eureka服务名）
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7777/eureka/
+
+
